@@ -14,7 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var trafficLightGreenView: UIView!
     @IBOutlet weak var startButton: UIButton!
     
-    private let alphaValue: CGFloat = 0.3
+    private let startAlphaValue: CGFloat = 0.3
+    private let endAlphaValue: CGFloat = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +27,34 @@ class ViewController: UIViewController {
 
     @IBAction func startButtonPressed() {
         
-        
+        if trafficLightRedView.alpha != endAlphaValue && trafficLightYellowView.alpha != endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
+            
+            trafficLightRedView.alpha = endAlphaValue
+            startButton.setTitle("Next", for: .normal)
+            
+        } else if trafficLightRedView.alpha == endAlphaValue && trafficLightYellowView.alpha != endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
+            
+            trafficLightRedView.alpha = startAlphaValue
+            trafficLightYellowView.alpha = endAlphaValue
+            
+        } else if trafficLightRedView.alpha != endAlphaValue && trafficLightYellowView.alpha == endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
+            
+            trafficLightRedView.alpha = startAlphaValue
+            trafficLightYellowView.alpha = startAlphaValue
+            trafficLightGreenView.alpha = endAlphaValue
+            
+        } else {
+            trafficLightRedView.alpha = endAlphaValue
+            trafficLightGreenView.alpha = startAlphaValue
+            
+        }
     }
     
     private func setupTrafficLight() {
         
-        trafficLightRedView.alpha = alphaValue
-        trafficLightYellowView.alpha = alphaValue
-        trafficLightGreenView.alpha = alphaValue
+        trafficLightRedView.alpha = startAlphaValue
+        trafficLightYellowView.alpha = startAlphaValue
+        trafficLightGreenView.alpha = startAlphaValue
         
         trafficLightRedView.layer.cornerRadius = trafficLightRedView.frame.size.height / 2
         trafficLightYellowView.layer.cornerRadius = trafficLightYellowView.frame.size.height / 2
