@@ -8,53 +8,53 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var trafficLightRedView: UIView!
     @IBOutlet weak var trafficLightYellowView: UIView!
     @IBOutlet weak var trafficLightGreenView: UIView!
     @IBOutlet weak var startButton: UIButton!
     
-    private let startAlphaValue: CGFloat = 0.3
-    private let endAlphaValue: CGFloat = 1
+    private let offLight: CGFloat = 0.3
+    private let onLight: CGFloat = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startButton.layer.cornerRadius = 10
         
-        setupTrafficLight()
+        setupTrafficLights()
     }
-
+    
     @IBAction func startButtonPressed() {
         
-        if trafficLightRedView.alpha != endAlphaValue && trafficLightYellowView.alpha != endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
+        switch onLight {
+        
+        case trafficLightRedView.alpha:
             
-            trafficLightRedView.alpha = endAlphaValue
+            trafficLightRedView.alpha = offLight
+            trafficLightYellowView.alpha = onLight
+            
+        case trafficLightYellowView.alpha:
+            
+            trafficLightYellowView.alpha = offLight
+            trafficLightGreenView.alpha = onLight
+            
+        case trafficLightGreenView.alpha:
+            
+            trafficLightGreenView.alpha = offLight
+            trafficLightRedView.alpha = onLight
+            
+        default:
             startButton.setTitle("Next", for: .normal)
-            
-        } else if trafficLightRedView.alpha == endAlphaValue && trafficLightYellowView.alpha != endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
-            
-            trafficLightRedView.alpha = startAlphaValue
-            trafficLightYellowView.alpha = endAlphaValue
-            
-        } else if trafficLightRedView.alpha != endAlphaValue && trafficLightYellowView.alpha == endAlphaValue && trafficLightGreenView.alpha != endAlphaValue {
-            
-            trafficLightRedView.alpha = startAlphaValue
-            trafficLightYellowView.alpha = startAlphaValue
-            trafficLightGreenView.alpha = endAlphaValue
-            
-        } else {
-            trafficLightRedView.alpha = endAlphaValue
-            trafficLightGreenView.alpha = startAlphaValue
-            
+            trafficLightRedView.alpha = onLight
         }
     }
     
-    private func setupTrafficLight() {
+    private func setupTrafficLights() {
         
-        trafficLightRedView.alpha = startAlphaValue
-        trafficLightYellowView.alpha = startAlphaValue
-        trafficLightGreenView.alpha = startAlphaValue
+        trafficLightRedView.alpha = offLight
+        trafficLightYellowView.alpha = offLight
+        trafficLightGreenView.alpha = offLight
         
         trafficLightRedView.layer.cornerRadius = trafficLightRedView.frame.size.height / 2
         trafficLightYellowView.layer.cornerRadius = trafficLightYellowView.frame.size.height / 2
