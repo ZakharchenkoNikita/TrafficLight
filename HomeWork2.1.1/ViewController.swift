@@ -9,11 +9,35 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var trafficLightRedView: UIView!
+    @IBOutlet weak var trafficLightYellowView: UIView!
+    @IBOutlet weak var trafficLightGreenView: UIView!
+    @IBOutlet weak var startButton: UIButton!
+    
+    private let alphaValue: CGFloat = 0.3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        startButton.layer.cornerRadius = 10
+        
+        setupTrafficLight()
     }
 
-
+    @IBAction func startButtonPressed() {
+        
+        
+    }
+    
+    private func setupTrafficLight() {
+        
+        trafficLightRedView.alpha = alphaValue
+        trafficLightYellowView.alpha = alphaValue
+        trafficLightGreenView.alpha = alphaValue
+        
+        trafficLightRedView.layer.cornerRadius = trafficLightRedView.frame.size.height / 2
+        trafficLightYellowView.layer.cornerRadius = trafficLightYellowView.frame.size.height / 2
+        trafficLightGreenView.layer.cornerRadius = trafficLightGreenView.frame.size.height / 2
+    }
 }
 
