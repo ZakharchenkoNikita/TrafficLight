@@ -30,17 +30,14 @@ class ViewController: UIViewController {
         switch onLight {
         
         case trafficLightRedView.alpha:
-            
             trafficLightRedView.alpha = offLight
             trafficLightYellowView.alpha = onLight
             
         case trafficLightYellowView.alpha:
-            
             trafficLightYellowView.alpha = offLight
             trafficLightGreenView.alpha = onLight
             
         case trafficLightGreenView.alpha:
-            
             trafficLightGreenView.alpha = offLight
             trafficLightRedView.alpha = onLight
             
@@ -56,9 +53,9 @@ class ViewController: UIViewController {
         trafficLightYellowView.alpha = offLight
         trafficLightGreenView.alpha = offLight
         
-        trafficLightRedView.layer.cornerRadius = trafficLightRedView.frame.size.height / 2
-        trafficLightYellowView.layer.cornerRadius = trafficLightYellowView.frame.size.height / 2
-        trafficLightGreenView.layer.cornerRadius = trafficLightGreenView.frame.size.height / 2
+        trafficLightRedView.layer.cornerRadius = trafficLightRedView.frame.height / 2
+        trafficLightYellowView.layer.cornerRadius = trafficLightYellowView.frame.height / 2
+        trafficLightGreenView.layer.cornerRadius = trafficLightGreenView.frame.height / 2
     }
 }
 
