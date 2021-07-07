@@ -26,9 +26,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed() {
-        
         switch onLight {
-        
         case trafficLightRedView.alpha:
             trafficLightRedView.alpha = offLight
             trafficLightYellowView.alpha = onLight
